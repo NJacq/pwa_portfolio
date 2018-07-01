@@ -25,6 +25,5 @@ body{
   -moz-osx-font-smoothing: grayscale;
   color: white;
   height: 100%;
-  background-color: #003150;
   }
 </style>

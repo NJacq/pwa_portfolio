@@ -7,7 +7,7 @@
   <div class="rub">
     <div class="lien1">
       <figure>
-        <router-link class="desc" to="/Presentation"><img class="logo" src="../assets/media/male.png" alt="présentation"><figcaption>Présentation</figcaption></router-link>
+        <router-link class="desc" to="/About"><img class="logo" src="../assets/media/male.png" alt="présentation"><figcaption>Présentation</figcaption></router-link>
       </figure>
       <figure>
           <router-link class="desc" to="/Realisations"><img class="logo" src="../assets/media/realisations.png" alt="réalisations"><figcaption>Réalisations</figcaption></router-link>

@@ -13,7 +13,6 @@ export default {
 </script>
 
 <style>
-
 body{
   background-color: #ddf2ff;
   margin: 0 auto;

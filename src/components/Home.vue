@@ -39,7 +39,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@font-face {
+@font-face{
 font-family: 'blue';
 src: url('../assets/fonts/Blue.ttf');
 }

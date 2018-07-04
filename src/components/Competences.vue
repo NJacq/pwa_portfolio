@@ -1,17 +1,36 @@
 <template>
   <div class="Competences">
-      <p>45454564</p>
-  </div>
-
+    <div class="nav">
+      <router-link class="desc" to="/About"><img class="logo" src="../assets/media/male.png" alt="compétences"></router-link>
+      <router-link class="desc" to="/Competences"><img class="logo" src="../assets/media/competences_select.png" alt="compétences"></router-link>
+      <router-link class="desc" to="/Realisations"><img class="logo" src="../assets/media/realisations.png" alt="compétences"></router-link>
+      <router-link class="desc" to="/Contact"><img class="logo" src="../assets/media/contact.png" alt="compétences"></router-link>
+    </div>
+      <h3>Compétences</h3>
+      <h4>Ce que je sais faire</h4>
+      <div class="listComp">{{comp}}</div>
+    </div>
 </template>
 
 <script>
+import axios from '../../axios.js'
+
 export default {
   name: 'Competences',
   data () {
     return {
-      msg: 'Nicolas Jacquot'
+      comp: {}
     }
+  },
+  created () {
+    axios.get('http://localhost/pwa_portfolio/src/model/competences.php')
+      .then(response => {
+        console.log(response)
+        this.comp = response.data
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 }
 </script>
@@ -19,46 +38,32 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
+@font-face{
+font-family: 'blue';
+src: url('../assets/fonts/Blue.ttf');
+}
 @media screen and (max-width: 640px){
-.accueil{
-  background-color: #003150;
+.nav{
+ display: flex;
+ justify-content: space-around;
+ margin-top: 20px;
 }
-.titre{
-  background-color: #003150;
-  height: 200px;
-  }
-h1, h2 {
-  font-weight: normal;
-  text-align: center;
-  color: white;
-  }
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-/* li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-} */
-.rub{
-  background-color: #ddf2ff;
-  height: 400px;
-  text-align: center;
+.desc{
+  width: 50px;
+  height: 50px;
 }
 .logo{
-  height: 35%;
-  width: 35%;
+  width: 90%;
+  height: 90%;
 }
-figure{
-  display: inline-block;
-  text-align: center;
-  width: 60%;
-  margin: -10%;
-  margin-top: 20%;
-
+h4{
+  font-family: "blue";
+  font-size: 18px;
+  color: #003150;
+  margin-left: 10%;
+}
+.listComp{
+  color: black;
 }
 }
 </style>

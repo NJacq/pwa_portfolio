@@ -3,15 +3,23 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './App'
-// import router from './router'
 import About from './components/About'
 import Home from './components/Home'
+import Contact from './components/Contact'
+import Competences from './components/Competences'
+import Realisations from './components/Realisations'
+import DetailProjet from './components/DetailProjet'
 
 Vue.use(VueRouter)
 
 const routes = [
+  {path: '/', component: Home},
   {path: '/About', component: About},
-  {path: '/', component: Home}
+  {path: '/Competences', component: Competences},
+  {path: '/Realisations', component: Realisations},
+  {path: '/Contact', component: Contact},
+  {path: '/Realisation', component: DetailProjet}
+
 ]
 const router = new VueRouter({
   routes,

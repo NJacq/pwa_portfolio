@@ -25,4 +25,30 @@ body{
   color: white;
   height: 100%;
   }
+h3{
+  color: #003150;
+  font-family: "blue";
+  font-size: 30px;
+  margin-left: 6%;
+}
+p{
+  color: #003150;
+  font-family: "blue";
+  font-size: 24px;
+  text-align: center;
+  margin-left: 15%;
+  margin-right: 15%;
+}
+button{
+  color: #003150;
+  background-color: #f79521;
+  font-size: 24px;
+  font-family: "blue";
+  width: 180px;
+  height: 70px;
+  display: flex;
+  margin: auto;
+  justify-content: space-around;
+  border-radius: 12px;
+ }
 </style>

@@ -8,21 +8,34 @@
       <router-link class="desc" to="/Contact"><img class="logo" src="../assets/media/contact.png" alt="compétences"></router-link>
     </div>
       <h3>Présentation</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Malesuada pellentesque elit eget gravida cum sociis. Enim lobortis scelerisque fermentum dui. Convallis tellus id interdum velit. Nam aliquam sem et tortor consequat id. Euismod in pellentesque massa placerat. Amet mattis vulputate enim nulla aliquet porttitor lacus. Gravida neque convallis a cras semper auctor. Consectetur a erat nam at lectus urna.</p>
+      <p>{{pres.description}}</p>
       <!-- <input type="button" value="Télécharger mon C.V" onclick="window.location='http://nicolasj.promocodeur-17..online/C.V_Nicolas_Jacquot.pdf';"> -->
-      <a href="https://nicolasj.promo-17.codeur.online/C.V_Nicolas_Jacquot.pdf" download="C.V_Nicolas_Jacquot.pdf">Télécharger<br />mon CV</a>
+      <a href="https://nicolasj.promo-17.codeur.online/C.V_Nicolas_Jacquot.pdf" download="C.V_Nicolas_Jacquot.pdf"><button type="submit" name="telecharger" class="btn">Télécharger mon CV</button></a>
     </div>
     </body>
 
 </template>
 
 <script>
+import axios from '../../axios.js'
+
 export default {
-  name: 'About',
+  name: 'Presentation',
   data () {
     return {
-      msg: 'Nicolas Jacquot'
+      pres: {}
     }
+  },
+  created () {
+    axios.get('http://localhost/pwa_portfolio/src/model/presentation.php')
+      .then(response => {
+        console.log(response)
+        this.pres = response.data
+        // this.comp = JSON.parse(response.data)
+      })
+      .catch(Err => {
+        // console.log(err)
+      })
   }
 }
 </script>
@@ -47,5 +60,19 @@ src: url('../assets/fonts/Blue.ttf');
   width: 90%;
   height: 90%;
 }
+a{
+  text-decoration: none;
+  color: #003150;
+}
+.btn{
+  color: #003150;
+  background-color: #f79521;
+  font-family: "blue";
+  font-size: 25px;
+  text-align: center;
+  width: 200px;
+  height: 70px;
+}
+
 }
 </style>

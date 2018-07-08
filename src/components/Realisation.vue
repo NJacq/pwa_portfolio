@@ -1,38 +1,43 @@
 <template>
-  <div class="Competences">
+  <div class="Réalisation">
     <div class="nav">
       <router-link class="desc" to="/About"><img class="logo" src="../assets/media/male.png" alt="compétences"></router-link>
-      <router-link class="desc" to="/Competences"><img class="logo" src="../assets/media/competences_select.png" alt="compétences"></router-link>
-      <router-link class="desc" to="/Realisations"><img class="logo" src="../assets/media/realisations.png" alt="compétences"></router-link>
+      <router-link class="desc" to="/Competences"><img class="logo" src="../assets/media/competences.png" alt="compétences"></router-link>
+      <router-link class="desc" to="/Realisations"><img class="logo" src="../assets/media/realisations_select.png" alt="compétences"></router-link>
       <router-link class="desc" to="/Contact"><img class="logo" src="../assets/media/contact.png" alt="compétences"></router-link>
     </div>
-      <h3>Compétences</h3>
-      <h4>Ce que je sais faire</h4>
-      <div>
+      <h3>Réalisation</h3>
+      <h4>{{real.nom}}</h4>
+      <h5>Description</h5>
+      <p class="descrip">{{real.description}}</p>
+      <!-- <div>
         <ul>
-            <li v-bind:key="comp.adresse" v-for="comp in comps">
-                <img class="logoComp" v-bind:src="comp.adresse">
+            <li v-bind:key="real.url">
+                <img class="imgProjet" v-bind:src="`${real.url}`">
             </li>
         </ul>
-      </div>
-    </div>
+      </div> -->
+      <p>{{real.url}}</p>
+      <h5>Compétences utilisées</h5>
+      <a v-bind:href="`${real.adresse}`"><button class="btn">Voir le projet</button></a>
+  </div>
 </template>
 
 <script>
 import axios from '../../axios.js'
 
 export default {
-  name: 'Competences',
+  name: 'Realisation/',
   data () {
     return {
-      comps: {}
+      real: {}
     }
   },
   created () {
-    axios.get('http://localhost/pwa_portfolio/src/model/competences.php')
+    axios.get('http://localhost/pwa_portfolio/src/model/realisationDetail.php')
       .then(response => {
         console.log(response)
-        this.comps = response.data
+        this.real = response.data
         // this.comp = JSON.parse(response.data)
       })
       .catch(Err => {
@@ -65,21 +70,29 @@ src: url('../assets/fonts/Blue.ttf');
 }
 h4{
   font-family: "blue";
-  font-size: 18px;
-  color: #003150;
-  margin-left: 10%;
+  font-size: 24px;
+  color: black;
+  text-align: center;
 }
-.listComp{
+h5{
+  color: #003150;
+  font-family: "blue";
+  font-size: 20px;
+  margin-left: 6%;
+}
+.descrip{
   color: black;
 }
-.logoComp{
-  width: 30%;
-  height: 30%;
+a{
+  text-decoration: none;
 }
 li{
   list-style: none;
   display: inline;
   margin: auto;
+}
+.imgProjet{
+  width:45%;
 }
 }
 </style>

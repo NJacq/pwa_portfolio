@@ -1,0 +1,116 @@
+<template>
+  <div class="Réalisations">
+    <div class="nav">
+      <router-link class="desc" to="/About"><img class="logo" src="../assets/media/male.png" alt="compétences"></router-link>
+      <router-link class="desc" to="/Competences"><img class="logo" src="../assets/media/competences.png" alt="compétences"></router-link>
+      <router-link class="desc" to="/Realisations"><img class="logo" src="../assets/media/realisations_select.png" alt="compétences"></router-link>
+      <router-link class="desc" to="/Contact"><img class="logo" src="../assets/media/contact.png" alt="compétences"></router-link>
+    </div>
+      <h3>Réalisations</h3>
+      <div class="container">
+        <div class="list">
+          <li v-bind:key="real.image" v-for="real in reals">
+            <figure>
+              <router-link class="desc" v-bind:to="`/Realisation/${real.id}`"><img class="logoReal" v-bind:src="real.image">
+              <figcaption class="titre">{{real.nom}}</figcaption></router-link>
+            </figure>
+          </li>             <!-- <img class="logoReal" v-bind:src="real.image"> -->
+        </div>
+      </div>
+    </div>
+</template>
+
+<script>
+import axios from '../../axios.js'
+
+export default {
+  name: 'Realisations',
+  data () {
+    return {
+      reals: {}
+    }
+  },
+  created () {
+    axios.get('http://localhost/pwa_portfolio/src/model/realisations.php')
+      .then(response => {
+        console.log(response)
+        this.reals = response.data
+        // this.comp = JSON.parse(response.data)
+      })
+      .catch(Err => {
+        // console.log(err)
+      })
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+
+@font-face{
+font-family: 'blue';
+src: url('../assets/fonts/Blue.ttf');
+}
+@media screen and (max-width: 640px){
+.nav{
+ display: flex;
+ justify-content: space-around;
+ margin-top: 20px;
+}
+.desc{
+  width: 50px;
+  height: 50px;
+}
+.logo{
+  width: 90%;
+  height: 90%;
+}
+h4{
+  font-family: "blue";
+  font-size: 18px;
+  color: #003150;
+  margin-left: 10%;
+}
+.list{
+  list-style: none;
+  text-align: center;
+  display: inline;
+}
+li{
+  display: inline;
+}
+figure{
+  width: 50%;
+  height: 50%;
+  margin: auto;
+  margin-bottom: 20%;
+  display: inline-block;
+  position: relative;
+}
+.logoReal{
+  width: 50%;
+  height: 50%;
+  margin: auto;
+  border-radius: 15px;
+}
+.titre{
+  color: #003150;
+  text-align: center;
+  height: 40%;
+  width: 100%;
+  margin: auto;
+  position: absolute;
+}
+a{
+  text-decoration: none;
+  font-family: "blue";
+  font-size: 22px;
+}
+.container{
+  width: 90%;
+  text-align: justify;
+  margin: auto;
+
+}
+}
+</style>

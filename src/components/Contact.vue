@@ -11,7 +11,7 @@
       <a class="icone" href="tel:+3362181515"><img class="phone" src="../assets/media/phone.png"></a>
       <a class="number" href="tel:+3362181515">06.21.81.51.15</a>
     </div>
-    <form>
+    <form name="portfolio" method="get" action="../model/envoi.php">
       <div class="champs">
         <input  v-model="nom" placeholder="Votre nom">
         <p id="nom" name="nom" errorMessage="Veuillez entrer un nom" class="form-control" minlength="5" required></p>
@@ -19,7 +19,7 @@
         <p id="prenom" name="prenom" errorMessage="Veuillez entrer un prénom" class="form-control" minlength="5" required></p>
         <input  v-model="mail" placeholder="Votre adresse mail">
         <p id="mail" name="mail" errorMessage="Veuillez entrer une adresse mail valide" class="form-control" minlength="5" required></p>
-        <textarea name="comment" form="usrform" placeholder="Entrer votre message..."></textarea>
+        <textarea name="message" form="usrform" placeholder="Entrer votre message..."></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Envoyer</button>
     </form>
@@ -28,15 +28,7 @@
 </template>
 
 <script>
-export default
-{
-  name: 'Contact',
-  data () {
-    return {
-      msg: 'Nicolas Jacquot'
-    }
-  }
-}
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -92,6 +84,7 @@ textarea{
   color: #003150;
   font-size: 22px;
   font-family: "blue";
+  background-color: rgb(250, 250, 250);
 }
 button{
   height: 40px;

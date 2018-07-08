@@ -1,10 +1,8 @@
 <?php
 header("Access-Control-Allow-Origin: *");
 require_once('../utils/bdd.php');
-$req = $bdd->prepare("SELECT `adresse`, `nom` FROM `competences` ORDER BY nom"); 
+$req = $bdd->prepare("SELECT `description` FROM `informations`"); 
 $req->execute();
-$response = $req->fetchAll(PDO::FETCH_ASSOC);
+$response = $req->fetch(PDO::FETCH_ASSOC);
 echo json_encode($response,  JSON_UNESCAPED_UNICODE);         
 ?>
-
-

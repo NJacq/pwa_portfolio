@@ -4,7 +4,7 @@ import Home from '@/components/Home'
 import Presentation from '@/components/About'
 import Competences from '@/components/Competences'
 import Realisations from '@/components/Realisations'
-import DetailProjet from '@/components/DetailProjet'
+import Realisation from '@/components/Realisation'
 import Contact from '@/components/Contact'
 
 Vue.use(Router)
@@ -33,8 +33,8 @@ export default new Router({
     },
     {
       path: '/',
-      name: 'Realisation',
-      component: DetailProjet
+      name: 'Realisation/([0-9]+)',
+      component: Realisation
         },
     {
       path: '/',

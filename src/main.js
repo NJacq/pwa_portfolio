@@ -8,7 +8,7 @@ import Home from './components/Home'
 import Contact from './components/Contact'
 import Competences from './components/Competences'
 import Realisations from './components/Realisations'
-import DetailProjet from './components/DetailProjet'
+import Realisation from './components/Realisation'
 
 Vue.use(VueRouter)
 
@@ -18,7 +18,7 @@ const routes = [
   {path: '/Competences', component: Competences},
   {path: '/Realisations', component: Realisations},
   {path: '/Contact', component: Contact},
-  {path: '/Realisation', component: DetailProjet}
+  {path: '/Realisation/([0-9]+)', component: Realisation}
 
 ]
 const router = new VueRouter({

@@ -17,9 +17,11 @@
             </li>
         </ul>
       </div> -->
-      <p>{{real.url}}</p>
+      <!-- <li v-bind:key="reali.URL" v-for="reali in real.URL.split(',')">
+        <img class="imgProjet" v-bind:src="`${reali}`">
+      </li> -->
       <h5>Compétences utilisées</h5>
-      <a v-bind:href="`${real.adresse}`"><button class="btn">Voir le projet</button></a>
+      <!-- <a v-bind:href="`${real.adresse}`"><button class="btn">Voir le projet</button></a> -->
   </div>
 </template>
 
@@ -27,16 +29,18 @@
 import axios from '../../axios.js'
 
 export default {
-  name: 'Realisation/',
+  name: 'Realisation',
   data () {
     return {
-      real: {}
+      real: {},
+      id: ''
     }
   },
   created () {
-    axios.get('http://localhost/pwa_portfolio/src/model/realisationDetail.php')
+    this.id = this.$route.params[0]
+    axios.get('http://localhost/pwa_portfolio/src/model/realisationDetail.php?id=' + this.id)
       .then(response => {
-        console.log(response)
+        console.log(response.data)
         this.real = response.data
         // this.comp = JSON.parse(response.data)
       })

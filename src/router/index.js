@@ -32,8 +32,8 @@ export default new Router({
       component: Realisations
     },
     {
-      path: '/',
-      name: 'Realisation/([0-9]+)',
+      path: '/Realisation/:id',
+      name: 'Realisation',
       component: Realisation
         },
     {

@@ -10,18 +10,20 @@
       <h4>{{real.nom}}</h4>
       <h5>Description</h5>
       <p class="descrip">{{real.description}}</p>
-      <!-- <div>
-        <ul>
-            <li v-bind:key="real.url">
-                <img class="imgProjet" v-bind:src="`${real.url}`">
-            </li>
-        </ul>
-      </div> -->
-      <!-- <li v-bind:key="reali.URL" v-for="reali in real.URL.split(',')">
-        <img class="imgProjet" v-bind:src="`${reali}`">
-      </li> -->
+      <div>
+      </div>
+      <ul>
+        <li v-bind:key="reali.url" v-for="reali in real.url.split(',')">
+          <img class="imgProjet" v-bind:src="`${reali}`">
+        </li>
+      </ul>
       <h5>Compétences utilisées</h5>
-      <!-- <a v-bind:href="`${real.adresse}`"><button class="btn">Voir le projet</button></a> -->
+      <ul>
+        <li v-bind:key="realisa.imgcomp" v-for="realisa in real.imgcomp.split(',')">
+          <img class="imgComp" v-bind:src="`${realisa}`">
+        </li>
+      </ul>
+      <a v-bind:href="`${real.adresse}`"><button class="btn">Voir le projet</button></a>
   </div>
 </template>
 
@@ -90,13 +92,26 @@ h5{
 a{
   text-decoration: none;
 }
+ul{
+  padding: 0;
+  -webkit-padding-start: 0;
+  text-align: center;
+  margin: 0;
+}
 li{
   list-style: none;
   display: inline;
   margin: auto;
 }
 .imgProjet{
-  width:45%;
+  width: 40%;
+  height: 40%;
+  margin: 1%;
+}
+.imgComp{
+  width: 30%;
+  height: 30%;
+  margin: 1%;
 }
 }
 </style>

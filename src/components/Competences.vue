@@ -69,9 +69,9 @@ h4{
   color: #003150;
   margin-left: 10%;
 }
-.listComp{
+/* .listComp{
   color: black;
-}
+} */
 .logoComp{
   width: 30%;
   height: 30%;

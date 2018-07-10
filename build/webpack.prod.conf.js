@@ -11,7 +11,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
-const env = process.env.NODE_ENV === 'testing'
+const env = process.env.NODE_ENV === 'production'
   ? require('../config/test.env')
   : require('../config/prod.env')
 
@@ -114,10 +114,14 @@ const webpackConfig = merge(baseWebpackConfig, {
 
     // copy custom static assets
     new CopyWebpackPlugin([
+      // {
+      //   from: path.resolve(__dirname, '../static'),
+      //   to: config.build.assetsSubDirectory,
+      //   ignore: ['.*']
+      // },
       {
-        from: path.resolve(__dirname, '../static'),
-        to: config.build.assetsSubDirectory,
-        ignore: ['.*']
+        from: path.resolve(__dirname, '../src/model/*.php'),
+        to: path.resolve(__dirname, '../dist/')
       }
     ])
   ]

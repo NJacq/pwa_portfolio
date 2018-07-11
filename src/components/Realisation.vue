@@ -35,6 +35,7 @@ export default {
   data () {
     return {
       real: {},
+      realis: {},
       id: ''
     }
   },

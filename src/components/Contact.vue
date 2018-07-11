@@ -8,10 +8,10 @@
     </div>
    <h3>Contact</h3>
     <div class="tel">
-      <a class="icone" href="tel:+3362181515"><img class="phone" src="../assets/media/phone.png"></a>
-      <a class="number" href="tel:+3362181515">06.21.81.51.15</a>
+      <a class="icone" v-bind:href="`tel:${pres.tel_interna}`"><img class="phone" src="../assets/media/phone.png"></a>
+      <a class="number" v-bind:href="`sms:${pres.tel_interna}`">{{pres.tel}}</a>
     </div>
-    <form name="portfolio" method="get" action="../model/envoi.php">
+     <form id="form" @submit="checkForm" action="" method="post">
       <div class="champs">
         <input  v-model="nom" placeholder="Votre nom">
         <p id="nom" name="nom" errorMessage="Veuillez entrer un nom" class="form-control" minlength="5" required></p>
@@ -20,15 +20,34 @@
         <input  v-model="mail" placeholder="Votre adresse mail">
         <p id="mail" name="mail" errorMessage="Veuillez entrer une adresse mail valide" class="form-control" minlength="5" required></p>
         <textarea name="message" form="usrform" placeholder="Entrer votre message..."></textarea>
-        </div>
+      </div>
         <button type="submit" class="btn btn-primary">Envoyer</button>
     </form>
   </div>
-
 </template>
 
 <script>
+import axios from '../../axios.js'
 
+export default {
+  name: 'Presentation',
+  data () {
+    return {
+      pres: {}
+    }
+  },
+  created () {
+    axios.get('http://localhost/pwa_portfolio/src/model/presentation.php')
+      .then(response => {
+        console.log(response)
+        this.pres = response.data
+        // this.comp = JSON.parse(response.data)
+      })
+      .catch(Err => {
+        // console.log(err)
+      })
+  }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

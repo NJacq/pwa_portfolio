@@ -9,8 +9,7 @@
     </div>
       <h3>Présentation</h3>
       <p>{{pres.description}}</p>
-      <!-- <input type="button" value="Télécharger mon C.V" onclick="window.location='http://nicolasj.promocodeur-17..online/C.V_Nicolas_Jacquot.pdf';"> -->
-      <a href="https://nicolasj.promo-17.codeur.online/C.V_Nicolas_Jacquot.pdf" download="C.V_Nicolas_Jacquot.pdf"><button type="submit" name="telecharger" class="btn">Télécharger mon CV</button></a>
+      <a v-bind:href="`${pres.cv_url}`" download="C.V_Nicolas_Jacquot.pdf"><button type="submit" name="telecharger" class="btn">Télécharger mon CV</button></a>
     </div>
     </body>
 

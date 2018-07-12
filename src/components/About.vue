@@ -1,15 +1,15 @@
 <template>
   <body>
    <div class="presentation">
+      <h3>Présentation</h3>
+      <p>{{pres.description}}</p>
+      <a v-bind:href="`${pres.cv_url}`" download="C.V_Nicolas_Jacquot.pdf"><button type="submit" name="telecharger" class="btn">Télécharger mon CV</button></a>
+    </div>
     <div class="nav">
       <router-link class="desc" to="/About"><img class="logo" src="../assets/media/male_select.png" alt="compétences"></router-link>
       <router-link class="desc" to="/Competences"><img class="logo" src="../assets/media/competences.png" alt="compétences"></router-link>
       <router-link class="desc" to="/Realisations"><img class="logo" src="../assets/media/realisations.png" alt="compétences"></router-link>
       <router-link class="desc" to="/Contact"><img class="logo" src="../assets/media/contact.png" alt="compétences"></router-link>
-    </div>
-      <h3>Présentation</h3>
-      <p>{{pres.description}}</p>
-      <a v-bind:href="`${pres.cv_url}`" download="C.V_Nicolas_Jacquot.pdf"><button type="submit" name="telecharger" class="btn">Télécharger mon CV</button></a>
     </div>
     </body>
 
@@ -49,7 +49,12 @@ src: url('../assets/fonts/Blue.ttf');
 .nav{
  display: flex;
  justify-content: space-around;
- margin-top: 20px;
+ position: fixed;
+ width: 100%;
+ padding-top: 3%;
+ bottom: 0;
+ background-color: #ddf2ff;
+ border-top: #003150 solid 2px;
 }
 .desc{
   width: 50px;
@@ -71,6 +76,9 @@ a{
   text-align: center;
   width: 200px;
   height: 70px;
+}
+.presentation{
+  margin-bottom: 25%;
 }
 
 }

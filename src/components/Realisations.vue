@@ -1,23 +1,23 @@
 <template>
-  <div class="Réalisations">
+  <div class="realisations">
+    <h3>Réalisations</h3>
+    <div class="container">
+      <div class="list">
+        <li v-bind:key="real.image" v-for="real in reals">
+          <figure>
+            <router-link class="desc" v-bind:to="`/Realisation/${real.id}`"><img class="logoReal" v-bind:src="real.image">
+            <figcaption class="titre">{{real.nom}}</figcaption></router-link>
+          </figure>
+        </li>
+      </div>
+    </div>
     <div class="nav">
       <router-link class="desc" to="/About"><img class="logo" src="../assets/media/male.png" alt="compétences"></router-link>
       <router-link class="desc" to="/Competences"><img class="logo" src="../assets/media/competences.png" alt="compétences"></router-link>
       <router-link class="desc" to="/Realisations"><img class="logo" src="../assets/media/realisations_select.png" alt="compétences"></router-link>
       <router-link class="desc" to="/Contact"><img class="logo" src="../assets/media/contact.png" alt="compétences"></router-link>
     </div>
-      <h3>Réalisations</h3>
-      <div class="container">
-        <div class="list">
-          <li v-bind:key="real.image" v-for="real in reals">
-            <figure>
-              <router-link class="desc" v-bind:to="`/Realisation/${real.id}`"><img class="logoReal" v-bind:src="real.image">
-              <figcaption class="titre">{{real.nom}}</figcaption></router-link>
-            </figure>
-          </li>
-        </div>
-      </div>
-    </div>
+  </div>
 </template>
 
 <script>
@@ -55,7 +55,12 @@ src: url('../assets/fonts/Blue.ttf');
 .nav{
  display: flex;
  justify-content: space-around;
- margin-top: 20px;
+ position: fixed;
+ width: 100%;
+ padding-top: 3%;
+ bottom: 0;
+ background-color: #ddf2ff;
+ border-top: #003150 solid 2px;
 }
 .desc{
   width: 50px;
@@ -110,7 +115,9 @@ a{
   width: 90%;
   text-align: justify;
   margin: auto;
-
+}
+.realisations{
+  margin-bottom: 25%;
 }
 }
 </style>

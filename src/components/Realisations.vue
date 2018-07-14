@@ -2,7 +2,7 @@
   <div class="realisations">
     <h3>Réalisations</h3>
     <div class="container">
-      <div class="list">
+      <div class="liste">
         <li v-bind:key="real.image" v-for="real in reals">
           <figure>
             <router-link class="desc" v-bind:to="`/Realisation/${real.id}`"><img class="logoReal" v-bind:src="real.image">
@@ -12,6 +12,7 @@
       </div>
     </div>
     <div class="nav">
+      <router-link class="desc" to="/"><img class="logo" src="../assets/media/home.png" alt="accueil"></router-link>
       <router-link class="desc" to="/About"><img class="logo" src="../assets/media/male.png" alt="compétences"></router-link>
       <router-link class="desc" to="/Competences"><img class="logo" src="../assets/media/competences.png" alt="compétences"></router-link>
       <router-link class="desc" to="/Realisations"><img class="logo" src="../assets/media/realisations_select.png" alt="compétences"></router-link>
@@ -21,7 +22,7 @@
 </template>
 
 <script>
-import axios from '../../axios.js'
+import axios from 'axios'
 
 export default {
   name: 'Realisations',
@@ -31,7 +32,7 @@ export default {
     }
   },
   created () {
-    axios.get('http://localhost/pwa_portfolio/src/model/realisations.php')
+    axios.get('http://localhost/pwa_portfolio/static/model/realisations.php')
       .then(response => {
         console.log(response)
         this.reals = response.data
@@ -76,7 +77,7 @@ h4{
   color: #003150;
   margin-left: 10%;
 }
-.list{
+.liste{
   list-style: none;
   text-align: center;
   display: inline;

@@ -17,8 +17,9 @@
         <img class="imgComp" v-bind:src="`${realisa}`">
       </li>
     </ul>
-    <a v-bind:href="`${real.adresse}`"><button class="btn">Voir le projet</button></a>
+    <a v-bind:href="`${real.adresse}`" target="_blank"><button class="btn">Voir le projet</button></a>
     <div class="nav">
+      <router-link class="desc" to="/"><img class="logo" src="../assets/media/home.png" alt="accueil"></router-link>
       <router-link class="desc" to="/About"><img class="logo" src="../assets/media/male.png" alt="compétences"></router-link>
       <router-link class="desc" to="/Competences"><img class="logo" src="../assets/media/competences.png" alt="compétences"></router-link>
       <router-link class="desc" to="/Realisations"><img class="logo" src="../assets/media/realisations_select.png" alt="compétences"></router-link>
@@ -28,7 +29,7 @@
 </template>
 
 <script>
-import axios from '../../axios.js'
+import axios from 'axios'
 
 export default {
   name: 'Realisation',
@@ -40,7 +41,7 @@ export default {
   },
   created () {
     this.id = this.$route.params[0]
-    axios.get('http://localhost/pwa_portfolio/src/model/realisationDetail.php?id=' + this.id)
+    axios.get('http://localhost/pwa_portfolio/static/model/realisationDetail.php?id=' + this.id)
       .then(response => {
         console.log(response.data)
         this.real = response.data

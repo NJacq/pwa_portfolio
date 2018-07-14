@@ -3,9 +3,10 @@
    <div class="presentation">
       <h3>Présentation</h3>
       <p>{{pres.description}}</p>
-      <a v-bind:href="`${pres.cv_url}`" download="C.V_Nicolas_Jacquot.pdf"><button type="submit" name="telecharger" class="btn">Télécharger mon CV</button></a>
+      <a v-bind:href="`${pres.cv_url}`" target="_blank" download="C.V_Nicolas_Jacquot.pdf"><button type="submit" name="telecharger" class="btn">Télécharger mon CV</button></a>
     </div>
     <div class="nav">
+      <router-link class="desc" to="/"><img class="logo" src="../assets/media/home.png" alt="accueil"></router-link>
       <router-link class="desc" to="/About"><img class="logo" src="../assets/media/male_select.png" alt="compétences"></router-link>
       <router-link class="desc" to="/Competences"><img class="logo" src="../assets/media/competences.png" alt="compétences"></router-link>
       <router-link class="desc" to="/Realisations"><img class="logo" src="../assets/media/realisations.png" alt="compétences"></router-link>
@@ -16,7 +17,7 @@
 </template>
 
 <script>
-import axios from '../../axios.js'
+import axios from 'axios'
 
 export default {
   name: 'Presentation',
@@ -26,7 +27,7 @@ export default {
     }
   },
   created () {
-    axios.get('http://localhost/pwa_portfolio/src/model/presentation.php')
+    axios.get('http://localhost/pwa_portfolio/static/model/presentation.php')
       .then(response => {
         console.log(response)
         this.pres = response.data
@@ -72,7 +73,6 @@ a{
   color: #003150;
   background-color: #f79521;
   font-family: "blue";
-  font-size: 25px;
   text-align: center;
   width: 200px;
   height: 70px;

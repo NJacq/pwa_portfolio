@@ -74,7 +74,7 @@ h1, h2 {
 }
 figure{
   display: inline-block;
-justify-content: space-between;
+  justify-content: space-between;
   position: relative;
   top: 50%;
   -webkit-transform: translateY(-50%);
@@ -83,16 +83,18 @@ justify-content: space-between;
   -o-transform: translateY(-50%);
   transform: translateY(-50%);
   margin: 0;
+
 }
 .desc{
   font-family: 'blue';
-  font-size: 22px;
+  font-size: 20px;
   color: #003150;
   text-decoration: none;
+  margin: auto;
 }
 figcaption{
   margin-bottom: 50px;
+  margin-top: 10px;
 }
-
 }
 </style>

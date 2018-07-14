@@ -24,6 +24,7 @@ body{
   -moz-osx-font-smoothing: grayscale;
   color: white;
   height: 100%;
+  margin: 0 auto;
   }
 h3{
   color: #003150;
@@ -42,13 +43,17 @@ p{
 button{
   color: #003150;
   background-color: #f79521;
-  font-size: 24px;
+  font-size: 28px;
+  line-height: 120%;
   font-family: "blue";
   width: 180px;
   height: 70px;
   display: flex;
   margin: auto;
-  justify-content: space-around;
   border-radius: 12px;
  }
+.liste{
+  margin: 0 auto;
+}
+
 </style>

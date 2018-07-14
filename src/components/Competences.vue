@@ -1,8 +1,8 @@
 <template>
-  <div class="Competences">
+  <div class="competences">
     <h3>Compétences</h3>
       <h4>Ce que je sais faire</h4>
-      <div>
+      <div class="liste">
         <ul>
             <li v-bind:key="comp.adresse" v-for="comp in comps">
                 <img class="logoComp" v-bind:src="comp.adresse">
@@ -10,6 +10,7 @@
         </ul>
       </div>
     <div class="nav">
+      <router-link class="desc" to="/"><img class="logo" src="../assets/media/home.png" alt="accueil"></router-link>
       <router-link class="desc" to="/About"><img class="logo" src="../assets/media/male.png" alt="compétences"></router-link>
       <router-link class="desc" to="/Competences"><img class="logo" src="../assets/media/competences_select.png" alt="compétences"></router-link>
       <router-link class="desc" to="/Realisations"><img class="logo" src="../assets/media/realisations.png" alt="compétences"></router-link>
@@ -19,7 +20,7 @@
 </template>
 
 <script>
-import axios from '../../axios.js'
+import axios from 'axios'
 
 export default {
   name: 'Competences',
@@ -29,7 +30,7 @@ export default {
     }
   },
   created () {
-    axios.get('http://localhost/pwa_portfolio/src/model/competences.php')
+    axios.get('http://localhost/pwa_portfolio/static/model/competences.php')
       .then(response => {
         console.log(response)
         this.comps = response.data
@@ -74,12 +75,14 @@ h4{
   color: #003150;
   margin-left: 10%;
 }
-/* .listComp{
-  color: black;
-} */
 .logoComp{
   width: 30%;
   height: 30%;
+}
+ul{
+  padding: 0;
+  margin: 0;
+  text-align: center;
 }
 li{
   list-style: none;
@@ -87,7 +90,7 @@ li{
   margin: auto;
 }
 .competences{
-  margin-bottom: 25%;
+  margin: 0 auto;
 }
 }
 </style>

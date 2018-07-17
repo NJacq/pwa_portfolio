@@ -7,18 +7,18 @@
   <div class="rub">
     <div class="lien1">
       <figure>
-        <router-link class="desc" to="/About"><img class="logo" src="../assets/media/male.png" alt="présentation"><figcaption>Présentation</figcaption></router-link>
+        <router-link class="desc" to="/About"><img class="logo" src="static/media/male.png" alt="présentation"><figcaption>Présentation</figcaption></router-link>
       </figure>
       <figure>
-          <router-link class="desc" to="/Realisations"><img class="logo" src="../assets/media/realisations.png" alt="réalisations"><figcaption>Réalisations</figcaption></router-link>
+          <router-link class="desc" to="/Realisations"><img class="logo" src="static/media/realisations.png" alt="réalisations"><figcaption>Réalisations</figcaption></router-link>
       </figure>
     </div>
     <div class="lien2">
       <figure>
-         <router-link class="desc" to="/Competences"><img class="logo" src="../assets/media/competences.png" alt="compétences"><figcaption>Compétences</figcaption></router-link>
+         <router-link class="desc" to="/Competences"><img class="logo" src="static/media/competences.png" alt="compétences"><figcaption>Compétences</figcaption></router-link>
       </figure>
       <figure>
-        <router-link class="desc" to="/Contact"><img class="logo" src="../assets/media/contact.png" alt="me contacter"><figcaption>Contact</figcaption></router-link>
+        <router-link class="desc" to="/Contact"><img class="logo" src="static/media/contact.png" alt="me contacter"><figcaption>Contact</figcaption></router-link>
       </figure>
     </div>
   </div>

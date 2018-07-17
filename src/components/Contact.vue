@@ -2,27 +2,47 @@
   <div class="contact">
     <h3>Contact</h3>
     <div class="tel">
-      <a class="icone" v-bind:href="`tel:${info.tel_interna}`" target="_blank"><img class="phone" src="../assets/media/phone.png"></a>
+      <a class="icone" v-bind:href="`tel:${info.tel_interna}`" target="_blank"><img class="phone" src="static/media/phone.png"></a>
       <a class="number" v-bind:href="`tel:${info.tel_interna}`" target="_blank">{{info.tel}}</a>
     </div>
-     <!-- <form id="formulaire">
-      <div class="champs">
-        <input  v-model="nom" class="input" name="nom" placeholder="Votre nom">
-        <p id="nom" name="nom" errorMessage="Veuillez entrer un nom" class="form-control" minlength="5" required></p>
-        <input  v-model="prenom" class="input" name="prenom" placeholder="Votre prénom">
-        <p id="prenom" name="prenom" errorMessage="Veuillez entrer un prénom" class="form-control" minlength="5" required></p>
-        <input  v-model="mail" type="email" name="email" placeholder="Votre adresse mail">
-        <p id="mail" name="mail" errorMessage="Veuillez entrer une adresse mail valide" class="form-control" minlength="5" required></p>
-        <textarea name="message" form="usrform" placeholder="Entrer votre message..."></textarea>
+    <form class="form" @submit.prevent="onSubmit" method="post" action="static/model/traitement_formulaire.php">
+      <div class="input">
+        <label for="lastName"></label>
+        <input :class="{ error: $v.lastName.$error}" type="text" id="lastName" v-model.trim="lastName" @input="$v.lastName.$touch()" placeholder="Votre nom">
+        <div v-if="$v.lastName.$dirty">
+          <p class="error-message" v-if="!$v.lastName.required">Un nom est obligatoire.</p>
+        </div>
       </div>
-        <button type="submit" class="btn btn-primary">Envoyer</button>
-    </form> -->
+      <div class="input">
+        <label for="firstName"></label>
+        <input :class="{ error: $v.firstName.$error }" type="text" id="firstName" v-model.trim="firstName" @input="$v.firstName.$touch()" placeholder="Votre prénom">
+        <div v-if="$v.firstName.$dirty">
+          <p class="error-message" v-if="!$v.firstName.required">Un prénom est obligatoire.</p>
+        </div>
+      </div>
+         <div class="input">
+        <label for="email"></label>
+        <input :class="{ error: $v.email.$error }" type="text" id="email" v-model.trim="email" placeholder="Votre adresse mail">
+        <div v-if="$v.email.$dirty">
+          <p class="error-message" v-if="!$v.email.required">Une adresse mail est obligatoire.</p>
+          <p class="error-message" v-if="!$v.email.email">Entrer une adresse mail valide !</p>
+        </div>
+      </div>
+      <div class="input">
+        <label for="message"></label>
+        <textarea :class="{ error: $v.message.$error }" type="textarea" id="message" v-model.trim="message" @input="$v.message.$touch()" placeholder="Votre message"></textarea>
+        <div v-if="$v.message.$dirty">
+          <p class="error-message" v-if="!$v.message.required">Un message est obligatoire.</p>
+        </div>
+      </div>
+      <button class="btn" type="submit" @click="validate"><span class="center">Envoyer</span></button>
+    </form>
     <div class="nav">
-      <router-link class="desc" to="/"><img class="logo" src="../assets/media/home.png" alt="accueil"></router-link>
-      <router-link class="desc" to="/About"><img class="logo" src="../assets/media/male.png" alt="compétences"></router-link>
-      <router-link class="desc" to="/Competences"><img class="logo" src="../assets/media/competences.png" alt="compétences"></router-link>
-      <router-link class="desc" to="/Realisations"><img class="logo" src="../assets/media/realisations.png" alt="compétences"></router-link>
-      <router-link class="desc" to="/Contact"><img class="logo" src="../assets/media/contact_select.png" alt="compétences"></router-link>
+      <router-link class="desc" to="/"><img class="logo" src="static/media/home.png" alt="accueil"></router-link>
+      <router-link class="desc" to="/About"><img class="logo" src="static/media/male.png" alt="compétences"></router-link>
+      <router-link class="desc" to="/Competences"><img class="logo" src="static/media/competences.png" alt="compétences"></router-link>
+      <router-link class="desc" to="/Realisations"><img class="logo" src="static/media/realisations.png" alt="compétences"></router-link>
+      <router-link class="desc" to="/Contact"><img class="logo" src="static/media/contact_select.png" alt="compétences"></router-link>
     </div>
   </div>
 
@@ -30,12 +50,56 @@
 
 <script>
 import axios from 'axios'
+import { required, email } from 'vuelidate/lib/validators'
 
 export default {
-  name: 'Contact',
   data () {
     return {
+      form: {
+        lastName: '',
+        firstName: '',
+        email: '',
+        message: ''
+      },
       info: {}
+    }
+  },
+  methods: {
+    validate () {
+      console.log('hihi')
+      this.$v.$touch() // it will validate all fields
+      if (!this.$v.$invalid) { // invalid, becomes true when a validations return false
+      //  you dont have validation error.So do what u want to do here
+        console.log(this.lastName)
+      }
+    },
+    onSubmit () {
+      console.log('submit!')
+      this.$v.$touch()
+      if (this.$v.$invalid) {
+        this.submitStatus = 'ERROR'
+      } else {
+        // do your submit logic here
+        this.submitStatus = 'PENDING'
+        setTimeout(() => {
+          this.submitStatus = 'OK'
+        }, 500)
+      }
+    }
+  },
+  validations: {
+    lastName: {
+      required
+    },
+    firstName: {
+      required
+    },
+    email: {
+      required,
+      email
+    },
+    message: {
+      required
     }
   },
   created () {
@@ -128,6 +192,38 @@ button{
   }
 .contact{
   margin-bottom: 25%;
+}
+.form {
+ display: inline;
+ text-align: center;
+}
+.validators {
+ display: inline-block;
+ text-align: center;
+ vertical-align: top;
+}
+.input {
+ padding: 5px;
+}
+input:focus {
+  outline: none;
+}
+.error {
+  border-radius: 1px solid red;
+}
+.error-message {
+ font-size: 15px;
+ color: red;
+}
+.btn{
+  color: #003150;
+  background-color: #f79521;
+  font-family: "blue";
+  text-align: center;
+  margin: auto;
+}
+.center{
+  margin: auto;
 }
 }
 </style>

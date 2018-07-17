@@ -12,11 +12,11 @@
       </div>
     </div>
     <div class="nav">
-      <router-link class="desc" to="/"><img class="logo" src="../assets/media/home.png" alt="accueil"></router-link>
-      <router-link class="desc" to="/About"><img class="logo" src="../assets/media/male.png" alt="compétences"></router-link>
-      <router-link class="desc" to="/Competences"><img class="logo" src="../assets/media/competences.png" alt="compétences"></router-link>
-      <router-link class="desc" to="/Realisations"><img class="logo" src="../assets/media/realisations_select.png" alt="compétences"></router-link>
-      <router-link class="desc" to="/Contact"><img class="logo" src="../assets/media/contact.png" alt="compétences"></router-link>
+      <router-link class="desc" to="/"><img class="logo" src="static/media/home.png" alt="accueil"></router-link>
+      <router-link class="desc" to="/About"><img class="logo" src="static/media/male.png" alt="compétences"></router-link>
+      <router-link class="desc" to="/Competences"><img class="logo" src="static/media/competences.png" alt="compétences"></router-link>
+      <router-link class="desc" to="/Realisations"><img class="logo" src="static/media/realisations_select.png" alt="compétences"></router-link>
+      <router-link class="desc" to="/Contact"><img class="logo" src="static/media/contact.png" alt="compétences"></router-link>
     </div>
   </div>
 </template>

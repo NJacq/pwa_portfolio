@@ -6,11 +6,11 @@
       <a v-bind:href="`${pres.cv_url}`" target="_blank" download="C.V_Nicolas_Jacquot.pdf"><button type="submit" name="telecharger" class="btn">Télécharger mon CV</button></a>
     </div>
     <div class="nav">
-      <router-link class="desc" to="/"><img class="logo" src="../assets/media/home.png" alt="accueil"></router-link>
-      <router-link class="desc" to="/About"><img class="logo" src="../assets/media/male_select.png" alt="compétences"></router-link>
-      <router-link class="desc" to="/Competences"><img class="logo" src="../assets/media/competences.png" alt="compétences"></router-link>
-      <router-link class="desc" to="/Realisations"><img class="logo" src="../assets/media/realisations.png" alt="compétences"></router-link>
-      <router-link class="desc" to="/Contact"><img class="logo" src="../assets/media/contact.png" alt="compétences"></router-link>
+      <router-link class="desc" to="/"><img class="logo" src="static/media/home.png" alt="accueil"></router-link>
+      <router-link class="desc" to="/About"><img class="logo" src="static/media/male_select.png" alt="compétences"></router-link>
+      <router-link class="desc" to="/Competences"><img class="logo" src="static/media/competences.png" alt="compétences"></router-link>
+      <router-link class="desc" to="/Realisations"><img class="logo" src="static/media/realisations.png" alt="compétences"></router-link>
+      <router-link class="desc" to="/Contact"><img class="logo" src="static/media/contact.png" alt="compétences"></router-link>
     </div>
     </body>
 

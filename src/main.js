@@ -2,6 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Vuelidate from 'vuelidate'
 import App from './App'
 import About from './components/About'
 import Home from './components/Home'
@@ -11,6 +12,7 @@ import Realisations from './components/Realisations'
 import Realisation from './components/Realisation'
 
 Vue.use(VueRouter)
+Vue.use(Vuelidate)
 
 const routes = [
   {path: '/', component: Home},
@@ -19,7 +21,6 @@ const routes = [
   {path: '/Realisations', component: Realisations},
   {path: '/Contact', component: Contact},
   {path: '/Realisation/([0-9]+)', component: Realisation}
-
 ]
 const router = new VueRouter({
   routes,
@@ -29,8 +30,7 @@ const router = new VueRouter({
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  validations: {},
   router,
   render: h => h(App)
-  // components: { App },
-  // template: '<App/>'
 })

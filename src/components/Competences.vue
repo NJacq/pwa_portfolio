@@ -11,10 +11,10 @@
       </div>
     <div class="nav">
       <router-link class="desc" to="/"><img class="logo" src="static/media/home.png" alt="accueil"></router-link>
-      <router-link class="desc" to="/About"><img class="logo" src="static/media/male.png" alt="compétences"></router-link>
+      <router-link class="desc" to="/About"><img class="logo" src="static/media/male.png" alt="présentation"></router-link>
       <router-link class="desc" to="/Competences"><img class="logo" src="static/media/competences_select.png" alt="compétences"></router-link>
-      <router-link class="desc" to="/Realisations"><img class="logo" src="static/media/realisations.png" alt="compétences"></router-link>
-      <router-link class="desc" to="/Contact"><img class="logo" src="static/media/contact.png" alt="compétences"></router-link>
+      <router-link class="desc" to="/Realisations"><img class="logo" src="static/media/realisations.png" alt="réalisations"></router-link>
+      <router-link class="desc" to="/Contact"><img class="logo" src="static/media/contact.png" alt="contact"></router-link>
     </div>
     </div>
 </template>
@@ -30,7 +30,7 @@ export default {
     }
   },
   created () {
-    axios.get('http://localhost/pwa_portfolio/static/model/competences.php')
+    axios.get('https://nicolasj.promo-17.codeur.online/portfolio_nicolas/static/model/competences.php')
       .then(response => {
         console.log(response)
         this.comps = response.data
@@ -48,7 +48,7 @@ export default {
 
 @font-face{
 font-family: 'blue';
-src: url('../assets/fonts/Blue.ttf');
+src: url('/portfolio_nicolas/static/fonts/Blue.ttf');
 }
 @media screen and (max-width: 640px){
 .nav{

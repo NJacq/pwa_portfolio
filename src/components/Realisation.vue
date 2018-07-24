@@ -17,13 +17,15 @@
         <img class="imgComp" v-bind:src="`${realisa}`">
       </li>
     </ul>
+    <a v-bind:href="`${real.git}`" target="_blank"><button class="btn">Voir le code</button></a>
     <a v-bind:href="`${real.adresse}`" target="_blank"><button class="btn">Voir le projet</button></a>
+
     <div class="nav">
       <router-link class="desc" to="/"><img class="logo" src="static/media/home.png" alt="accueil"></router-link>
-      <router-link class="desc" to="/About"><img class="logo" src="static/media/male.png" alt="compétences"></router-link>
+      <router-link class="desc" to="/About"><img class="logo" src="static/media/male.png" alt="présentation"></router-link>
       <router-link class="desc" to="/Competences"><img class="logo" src="static/media/competences.png" alt="compétences"></router-link>
-      <router-link class="desc" to="/Realisations"><img class="logo" src="static/media/realisations_select.png" alt="compétences"></router-link>
-      <router-link class="desc" to="/Contact"><img class="logo" src="static/media/contact.png" alt="compétences"></router-link>
+      <router-link class="desc" to="/Realisations"><img class="logo" src="static/media/realisations_select.png" alt="réalisations"></router-link>
+      <router-link class="desc" to="/Contact"><img class="logo" src="static/media/contact.png" alt="contact"></router-link>
     </div>
   </div>
 </template>
@@ -35,13 +37,12 @@ export default {
   name: 'Realisation',
   data () {
     return {
-      real: {},
-      id: ''
+      real: {}
     }
   },
   created () {
     this.id = this.$route.params[0]
-    axios.get('http://localhost/pwa_portfolio/static/model/realisationDetail.php?id=' + this.id)
+    axios.get('https://nicolasj.promo-17.codeur.online/portfolio_nicolas/static/model/realisationDetail.php?id=' + this.id)
       .then(response => {
         console.log(response.data)
         this.real = response.data
@@ -59,7 +60,7 @@ export default {
 
 @font-face{
 font-family: 'blue';
-src: url('../assets/fonts/Blue.ttf');
+src: url('/portfolio_nicolas/static/fonts/Blue.ttf');
 }
 @media screen and (max-width: 640px){
 .nav{

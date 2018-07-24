@@ -7,10 +7,10 @@
     </div>
     <div class="nav">
       <router-link class="desc" to="/"><img class="logo" src="static/media/home.png" alt="accueil"></router-link>
-      <router-link class="desc" to="/About"><img class="logo" src="static/media/male_select.png" alt="compétences"></router-link>
+      <router-link class="desc" to="/About"><img class="logo" src="static/media/male_select.png" alt="présentation"></router-link>
       <router-link class="desc" to="/Competences"><img class="logo" src="static/media/competences.png" alt="compétences"></router-link>
-      <router-link class="desc" to="/Realisations"><img class="logo" src="static/media/realisations.png" alt="compétences"></router-link>
-      <router-link class="desc" to="/Contact"><img class="logo" src="static/media/contact.png" alt="compétences"></router-link>
+      <router-link class="desc" to="/Realisations"><img class="logo" src="static/media/realisations.png" alt="réalisations"></router-link>
+      <router-link class="desc" to="/Contact"><img class="logo" src="static/media/contact.png" alt="contact"></router-link>
     </div>
     </body>
 
@@ -27,7 +27,7 @@ export default {
     }
   },
   created () {
-    axios.get('http://localhost/pwa_portfolio/static/model/presentation.php')
+    axios.get('https://nicolasj.promo-17.codeur.online/portfolio_nicolas/static/model/presentation.php')
       .then(response => {
         console.log(response)
         this.pres = response.data
@@ -44,7 +44,7 @@ export default {
 <style scoped>
 @font-face{
 font-family: 'blue';
-src: url('../assets/fonts/Blue.ttf');
+src: url('/portfolio_nicolas/static/fonts/Blue.ttf');
 }
 @media screen and (max-width: 640px){
 .nav{
@@ -69,14 +69,7 @@ a{
   text-decoration: none;
   color: #003150;
 }
-.btn{
-  color: #003150;
-  background-color: #f79521;
-  font-family: "blue";
-  text-align: center;
-  width: 200px;
-  height: 70px;
-}
+
 .presentation{
   margin-bottom: 25%;
 }

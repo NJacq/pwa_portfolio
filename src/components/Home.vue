@@ -18,7 +18,7 @@
          <router-link class="desc" to="/Competences"><img class="logo" src="static/media/competences.png" alt="compétences"><figcaption>Compétences</figcaption></router-link>
       </figure>
       <figure>
-        <router-link class="desc" to="/Contact"><img class="logo" src="static/media/contact.png" alt="me contacter"><figcaption>Contact</figcaption></router-link>
+        <router-link class="desc" to="/Contact"><img class="logo" src="static/media/contact.png" alt="contact"><figcaption>Contact</figcaption></router-link>
       </figure>
     </div>
   </div>
@@ -41,7 +41,7 @@ export default {
 <style scoped>
 @font-face{
 font-family: 'blue';
-src: url('../assets/fonts/Blue.ttf');
+src: url('/portfolio_nicolas/static/fonts/Blue.ttf');
 }
 @media screen and (max-width: 640px){
 .titre{

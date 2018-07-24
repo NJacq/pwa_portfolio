@@ -5,7 +5,7 @@
       <a class="icone" v-bind:href="`tel:${info.tel_interna}`" target="_blank"><img class="phone" src="static/media/phone.png"></a>
       <a class="number" v-bind:href="`tel:${info.tel_interna}`" target="_blank">{{info.tel}}</a>
     </div>
-    <form class="form" @submit.prevent="onSubmit" method="post" action="static/model/traitement_formulaire.php">
+    <form id="form" class="form" @submit.prevent="onSubmit" method="post" action="static/model/traitement_formulaire.php">
       <div class="input">
         <label for="lastName"></label>
         <input :class="{ error: $v.lastName.$error}" type="text" id="lastName" v-model.trim="lastName" @input="$v.lastName.$touch()" placeholder="Votre nom">
@@ -35,14 +35,14 @@
           <p class="error-message" v-if="!$v.message.required">Un message est obligatoire.</p>
         </div>
       </div>
-      <button class="btn" type="submit" @click="validate"><span class="center">Envoyer</span></button>
+      <button class="btn" name="envoi" type="submit" @click="validate"><span class="center">Envoyer</span></button>
     </form>
     <div class="nav">
       <router-link class="desc" to="/"><img class="logo" src="static/media/home.png" alt="accueil"></router-link>
-      <router-link class="desc" to="/About"><img class="logo" src="static/media/male.png" alt="compétences"></router-link>
+      <router-link class="desc" to="/About"><img class="logo" src="static/media/male.png" alt="présentation"></router-link>
       <router-link class="desc" to="/Competences"><img class="logo" src="static/media/competences.png" alt="compétences"></router-link>
-      <router-link class="desc" to="/Realisations"><img class="logo" src="static/media/realisations.png" alt="compétences"></router-link>
-      <router-link class="desc" to="/Contact"><img class="logo" src="static/media/contact_select.png" alt="compétences"></router-link>
+      <router-link class="desc" to="/Realisations"><img class="logo" src="static/media/realisations.png" alt="réalisations"></router-link>
+      <router-link class="desc" to="/Contact"><img class="logo" src="static/media/contact_select.png" alt="contact"></router-link>
     </div>
   </div>
 
@@ -72,6 +72,18 @@ export default {
       //  you dont have validation error.So do what u want to do here
         console.log(this.lastName)
       }
+      var formData = new FormData()
+      formData.append('lastName', this.lastName)
+      formData.append('firstName', this.firstName)
+      formData.append('email', this.email)
+      formData.append('message', this.message)
+      fetch('https://nicolasj.promo-17.codeur.online/portfolio_nicolas/static/model/traitement_formulaire.php', { method: 'POST', body: formData })
+      // axios.post('/someUrl', formData)
+      //   .then((response) => {
+      //     // success callback
+      //   }, (response) => {
+      //     // error callback
+      //   })
     },
     onSubmit () {
       console.log('submit!')
@@ -103,7 +115,7 @@ export default {
     }
   },
   created () {
-    axios.get('http://localhost/pwa_portfolio/static/model/contact.php')
+    axios.get('https://nicolasj.promo-17.codeur.online/portfolio_nicolas/static/model/contact.php')
       .then(response => {
         console.log(response)
         this.info = response.data
@@ -121,7 +133,7 @@ export default {
 
 @font-face{
 font-family: 'blue';
-src: url('../assets/fonts/Blue.ttf');
+src: url('/portfolio_nicolas/static/fonts/Blue.ttf');
 }
 @media screen and (max-width: 640px){
 .nav{
@@ -209,19 +221,20 @@ input:focus {
   outline: none;
 }
 .error {
-  border-radius: 1px solid red;
+  color: red;
+  border: 1px solid red;
 }
 .error-message {
  font-size: 15px;
  color: red;
 }
-.btn{
+/* .btn{
   color: #003150;
   background-color: #f79521;
   font-family: "blue";
   text-align: center;
   margin: auto;
-}
+} */
 .center{
   margin: auto;
 }

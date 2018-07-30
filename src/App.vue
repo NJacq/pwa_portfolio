@@ -43,17 +43,26 @@ p{
 button{
   color: #003150;
   background-color: #f79521;
-  font-size: 28px;
+  font-size: 20px;
+  text-align: center;
   line-height: 120%;
   font-family: "blue";
-  width: 180px;
-  height: 70px;
-  display: flex;
+  width: 150px;
+  height: 40px;
+  display: block;
   margin: auto;
-  border-radius: 12px;
+  border-radius: 10px;
  }
 .liste{
   margin: 0 auto;
+}
+.btn{
+  color: #003150;
+  background-color: #f79521;
+  font-family: "blue";
+  text-align: center;
+  width: 150px;
+  height: 50px;
 }
 
 </style>

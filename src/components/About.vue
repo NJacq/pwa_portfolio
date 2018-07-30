@@ -2,8 +2,10 @@
   <body>
    <div class="presentation">
       <h3>Présentation</h3>
-      <p>{{pres.description}}</p>
-      <a v-bind:href="`${pres.cv_url}`" target="_blank" download="C.V_Nicolas_Jacquot.pdf"><button type="submit" name="telecharger" class="btn">Télécharger mon CV</button></a>
+      <li v-bind:key="pre.description" v-for="pre in pres">
+        <p>{{pre.description}}</p>
+         <a v-bind:href="pre.cvUrl" target="_blank" download="C.V_Nicolas_Jacquot.pdf"><button type="submit" name="telecharger" class="btn">Télécharger mon CV</button></a>
+      </li>
     </div>
     <div class="nav">
       <router-link class="desc" to="/"><img class="logo" src="static/media/home.png" alt="accueil"></router-link>
@@ -27,10 +29,10 @@ export default {
     }
   },
   created () {
-    axios.get('https://nicolasj.promo-17.codeur.online/portfolio_nicolas/static/model/presentation.php')
+    axios.get('http://localhost:8000/api/informations')
       .then(response => {
         console.log(response)
-        this.pres = response.data
+        this.pres = response.data['hydra:member']
         // this.comp = JSON.parse(response.data)
       })
       .catch(Err => {

@@ -23,8 +23,9 @@ const routes = [
   {path: '/Realisation/([0-9]+)', component: Realisation}
 ]
 const router = new VueRouter({
-  routes,
-  mode: 'history'
+  routes
+  // base: '/portfolio_nicolas/',
+  // mode: 'history'
 })
 
 /* eslint-disable no-new */
@@ -34,3 +35,13 @@ new Vue({
   router,
   render: h => h(App)
 })
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('./service-worker.js').then(function (registration) {
+      console.log('Service worker successfully registered on scope', registration.scope)
+    }).catch(function (Error) {
+      console.log('Service worker failed to register')
+    })
+  })
+}

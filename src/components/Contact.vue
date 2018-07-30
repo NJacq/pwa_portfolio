@@ -2,8 +2,10 @@
   <div class="contact">
     <h3>Contact</h3>
     <div class="tel">
-      <a class="icone" v-bind:href="`tel:${info.tel_interna}`" target="_blank"><img class="phone" src="static/media/phone.png"></a>
-      <a class="number" v-bind:href="`tel:${info.tel_interna}`" target="_blank">{{info.tel}}</a>
+      <li v-bind:key="inf.description" v-for="inf in info">
+        <a class="icone" v-bind:href="`tel:${inf.telInterna}`" target="_blank"><img class="phone" src="static/media/phone.png"></a>
+        <a class="number" v-bind:href="`tel:${inf.telInterna}`" target="_blank">{{inf.tel}}</a>
+      </li>
     </div>
     <form id="form" class="form" @submit.prevent="onSubmit" method="post" action="static/model/traitement_formulaire.php">
       <div class="input">
@@ -115,10 +117,10 @@ export default {
     }
   },
   created () {
-    axios.get('https://nicolasj.promo-17.codeur.online/portfolio_nicolas/static/model/contact.php')
+    axios.get('http://localhost:8000/api/informations')
       .then(response => {
         console.log(response)
-        this.info = response.data
+        this.info = response.data['hydra:member']
         // this.comp = JSON.parse(response.data)
       })
       .catch(Err => {
@@ -172,6 +174,7 @@ input{
   color: #003150;
   font-size: 22px;
   font-family: "blue";
+  border-radius: 10px;
 }
 .champs{
   margin: auto;
@@ -215,7 +218,7 @@ button{
  vertical-align: top;
 }
 .input {
- padding: 5px;
+  padding: 5px;
 }
 input:focus {
   outline: none;
@@ -237,6 +240,16 @@ input:focus {
 } */
 .center{
   margin: auto;
+}
+::-webkit-input-placeholder /* WebKit, Blink, Edge */
+{
+  color: #003150;
+}
+:-moz-placeholder{
+  color: #003150;
+}
+li{
+  list-style-type: none;
 }
 }
 </style>

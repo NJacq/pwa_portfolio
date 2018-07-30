@@ -3,22 +3,22 @@
     <h3>Réalisation</h3>
     <h4>{{real.nom}}</h4>
     <h5>Description</h5>
-    <p class="descrip">{{real.description}}</p>
+    <p class="descrip">{{reali.description}}</p>
     <div>
     </div>
     <ul>
-      <li v-bind:key="reali.url" v-for="reali in real.url.split(',')">
-        <img class="imgProjet" v-bind:src="`${reali}`">
+      <li v-bind:key="img.url" v-for="img in imgs.url">
+        <img class="imgProjet" v-bind:src="img.url">
       </li>
     </ul>
     <h5>Compétences utilisées</h5>
     <ul>
-      <li v-bind:key="realisa.imgcomp" v-for="realisa in real.imgcomp.split(',')">
-        <img class="imgComp" v-bind:src="`${realisa}`">
+      <li v-bind:key="com.adresse" v-for="com in comp.adresse">
+        <img class="imgComp" v-bind:src="com.adresse">
       </li>
     </ul>
-    <a v-bind:href="`${real.git}`" target="_blank"><button class="btn">Voir le code</button></a>
-    <a v-bind:href="`${real.adresse}`" target="_blank"><button class="btn">Voir le projet</button></a>
+    <a v-bind:href="`${realisa.github}`" target="_blank"><button class="btn">Voir le code</button></a>
+    <a v-bind:href="`${realis.adresse}`" target="_blank"><button class="btn">Voir le projet</button></a>
 
     <div class="nav">
       <router-link class="desc" to="/"><img class="logo" src="static/media/home.png" alt="accueil"></router-link>
@@ -37,22 +37,51 @@ export default {
   name: 'Realisation',
   data () {
     return {
-      real: {}
+      real: { 'nom': '' },
+      reali: { 'description': '' },
+      realis: { 'adresse': '' },
+      realisa: { 'github': '' },
+      comp: { 'adresse': '' },
+      imgs: { 'url': '' }
     }
   },
   created () {
     this.id = this.$route.params[0]
-    axios.get('https://nicolasj.promo-17.codeur.online/portfolio_nicolas/static/model/realisationDetail.php?id=' + this.id)
+    axios.get('http://localhost:8000/api/projets/' + this.id)
       .then(response => {
-        console.log(response.data)
-        this.real = response.data
-        // this.comp = JSON.parse(response.data)
-      })
-      .catch(Err => {
-        // console.log(err)
+        var competences = response.data.competences
+        var images = response.data.Images
+        // console.log(images)
+        // console.log(response.data)
+        this.real.nom = response.data.nom
+        this.reali.description = response.data.description
+        this.realis.adresse = response.data.adresse
+        this.realisa.github = response.data.github
+        var dataAdresse = []
+        var dataUrl = []
+        for (let image of images) {
+          axios.get('http://localhost:8000' + image)
+            .then(response => {
+              console.log(response.data)
+              dataUrl.push(response.data)
+            })
+        }
+        for (let competence of competences) {
+          axios.get('http://localhost:8000' + competence)
+            .then(response => {
+              console.log(response.data)
+              dataAdresse.push(response.data)
+            })
+            .catch(err => {
+              console.log(err)
+            })
+        }
+        this.comp.adresse = dataAdresse
+        this.imgs.url = dataUrl
       })
   }
 }
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

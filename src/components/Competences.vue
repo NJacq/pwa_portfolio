@@ -30,10 +30,10 @@ export default {
     }
   },
   created () {
-    axios.get('https://nicolasj.promo-17.codeur.online/portfolio_nicolas/static/model/competences.php')
+    axios.get('http://localhost:8000/api/competences')
       .then(response => {
         console.log(response)
-        this.comps = response.data
+        this.comps = response.data['hydra:member']
         // this.comp = JSON.parse(response.data)
       })
       .catch(Err => {

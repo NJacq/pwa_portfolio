@@ -32,7 +32,7 @@ export default {
     }
   },
   created () {
-    axios.get('http://localhost:8000/api/projets')
+    axios.get('https://nicolasj.promo-17.codeur.online/back_office_portfolio/public/api/projets')
       .then(response => {
         console.log(response)
         this.reals = response.data['hydra:member']

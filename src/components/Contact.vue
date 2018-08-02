@@ -1,13 +1,13 @@
 <template>
   <div class="contact">
     <h3>Contact</h3>
-    <div class="tel">
-      <li v-bind:key="inf.description" v-for="inf in info">
+    <div class="telNum">
+      <li class="tel" v-bind:key="inf.description" v-for="inf in info">
         <a class="icone" v-bind:href="`tel:${inf.telInterna}`" target="_blank"><img class="phone" src="static/media/phone.png"></a>
         <a class="number" v-bind:href="`tel:${inf.telInterna}`" target="_blank">{{inf.tel}}</a>
       </li>
     </div>
-    <form id="form" class="form" @submit.prevent="onSubmit" method="post" action="static/model/traitement_formulaire.php">
+    <form id="form" class="form" @submit.prevent="onSubmit" method="post" action="">
       <div class="input">
         <label for="lastName"></label>
         <input :class="{ error: $v.lastName.$error}" type="text" id="lastName" v-model.trim="lastName" @input="$v.lastName.$touch()" placeholder="Votre nom">
@@ -39,6 +39,8 @@
       </div>
       <button class="btn" name="envoi" type="submit" @click="validate"><span class="center">Envoyer</span></button>
     </form>
+    <div id="response-envoi"></div>
+    <div id="response-envoi-echec"></div>
     <div class="nav">
       <router-link class="desc" to="/"><img class="logo" src="static/media/home.png" alt="accueil"></router-link>
       <router-link class="desc" to="/About"><img class="logo" src="static/media/male.png" alt="présentation"></router-link>
@@ -68,37 +70,50 @@ export default {
   },
   methods: {
     validate () {
-      console.log('hihi')
       this.$v.$touch() // it will validate all fields
       if (!this.$v.$invalid) { // invalid, becomes true when a validations return false
       //  you dont have validation error.So do what u want to do here
-        console.log(this.lastName)
       }
-      var formData = new FormData()
-      formData.append('lastName', this.lastName)
-      formData.append('firstName', this.firstName)
-      formData.append('email', this.email)
-      formData.append('message', this.message)
-      fetch('https://nicolasj.promo-17.codeur.online/portfolio_nicolas/static/model/traitement_formulaire.php', { method: 'POST', body: formData })
-      // axios.post('/someUrl', formData)
-      //   .then((response) => {
-      //     // success callback
-      //   }, (response) => {
-      //     // error callback
-      //   })
     },
-    onSubmit () {
-      console.log('submit!')
+    onSubmit (e) {
+      e.preventDefault()
       this.$v.$touch()
       if (this.$v.$invalid) {
         this.submitStatus = 'ERROR'
       } else {
-        // do your submit logic here
-        this.submitStatus = 'PENDING'
-        setTimeout(() => {
-          this.submitStatus = 'OK'
-        }, 500)
+        var formData = new FormData()
+        const url = 'https://nicolasj.promo-17.codeur.online/portfolio_nicolas/static/model/envoi.php'
+        formData.append('lastName', this.lastName)
+        formData.append('firstName', this.firstName)
+        formData.append('email', this.email)
+        formData.append('message', this.message)
+        axios.post(url, formData)
+          .then(function (response) {
+            return response.text()
+          })
+          .then(function (response) {
+            console.log(response)
+          })
+        this.$v.$touch()
+        if (this.$v.$invalid) {
+          this.submitStatus = '<p class="echec">L\'envoi de votre message a échoué!</p>'
+          document.getElementById('response-envoi').innerHTML = this.submitStatus
+        } else {
+          // do your submit logic here
+          this.submitStatus = 'Envoi en cours'
+          document.getElementById('response-envoi').innerHTML = this.submitStatus
+          setTimeout(() => {
+            this.submitStatus = 'L\'envoi de votre message a réussi!'
+            document.getElementById('response-envoi').innerHTML = ''
+            document.getElementById('response-envoi').innerHTML = this.submitStatus
+          }, 500)
+        }
       }
+      // do your submit logic here
+      this.submitStatus = 'PENDING'
+      setTimeout(() => {
+        this.submitStatus = 'OK'
+      }, 500)
     }
   },
   validations: {
@@ -117,7 +132,7 @@ export default {
     }
   },
   created () {
-    axios.get('http://localhost:8000/api/informations')
+    axios.get('https://nicolasj.promo-17.codeur.online/back_office_portfolio/public/api/informations')
       .then(response => {
         console.log(response)
         this.info = response.data['hydra:member']
@@ -156,6 +171,9 @@ src: url('/portfolio_nicolas/static/fonts/Blue.ttf');
   width: 90%;
   height: 90%;
 }
+.telNum{
+  padding-bottom: 5%;
+}
 .phone{
   width: 50px;
   height: 50px;
@@ -164,32 +182,38 @@ src: url('/portfolio_nicolas/static/fonts/Blue.ttf');
   display: flex;
   margin: auto;
   margin-left: 15px;
+  margin-bottom: 3%;
 }
 .number{
   margin: 0;
-  margin-top: 17px;
+  margin-top: 15px;
 }
 input{
   width: 80%;
   color: #003150;
   font-size: 22px;
   font-family: "blue";
-  border-radius: 10px;
+  background-color: #ddf2ff;
+  border: none;
+  border-bottom: #003150 1px solid;
+  margin-bottom: 3%;
 }
 .champs{
   margin: auto;
-  margin-top: 20px;
+  margin-top: 30px;
   text-align: center;
 }
 textarea{
-  width: 82%;
+  width: 80%;
   height: 100px;
   padding-top: 5px;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   color: #003150;
   font-size: 22px;
   font-family: "blue";
-  background-color: rgb(250, 250, 250);
+  background-color: #ddf2ff;
+  border: none;
+  border-bottom: #003150 1px solid;
 }
 button{
   height: 40px;
@@ -225,19 +249,21 @@ input:focus {
 }
 .error {
   color: red;
-  border: 1px solid red;
+  /* border: solid red; */
 }
 .error-message {
  font-size: 15px;
  color: red;
 }
-/* .btn{
+.btn{
   color: #003150;
   background-color: #f79521;
   font-family: "blue";
   text-align: center;
   margin: auto;
-} */
+  border: none;
+  margin-top: 4%;
+}
 .center{
   margin: auto;
 }
@@ -250,6 +276,14 @@ input:focus {
 }
 li{
   list-style-type: none;
+}
+#response-envoi{
+  color:green;
+  text-align: center;
+  margin-top: 5%;
+  margin: 2%;
+  font-size: 18px;
+  font-family: "blue";
 }
 }
 </style>

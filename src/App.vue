@@ -1,9 +1,7 @@
 <template>
-<body>
   <div id="app">
     <router-view/>
   </div>
-</body>
 </template>
 
 <script>
@@ -16,6 +14,7 @@ export default {
 body{
   background-color: #ddf2ff;
   margin: 0 auto;
+  height: auto;
 
 }
 #app {
@@ -40,6 +39,14 @@ p{
   margin-left: 15%;
   margin-right: 15%;
 }
+.echec{
+  color:red;
+  text-align: center;
+  margin-top: 5%;
+  margin: auto;
+  font-size: 18px;
+  font-family: "blue";
+}
 button{
   color: #003150;
   background-color: #f79521;
@@ -52,6 +59,8 @@ button{
   display: block;
   margin: auto;
   border-radius: 10px;
+  border: none;
+  margin-top: 2%;
  }
 .liste{
   margin: 0 auto;

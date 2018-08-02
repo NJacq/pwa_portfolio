@@ -23,9 +23,9 @@ const routes = [
   {path: '/Realisation/([0-9]+)', component: Realisation}
 ]
 const router = new VueRouter({
-  routes
-  // base: '/portfolio_nicolas/',
-  // mode: 'history'
+  routes,
+  base: '/portfolio_nicolas/',
+  mode: 'history'
 })
 
 /* eslint-disable no-new */

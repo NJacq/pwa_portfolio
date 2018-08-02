@@ -30,7 +30,7 @@ export default {
     }
   },
   created () {
-    axios.get('http://localhost:8000/api/competences')
+    axios.get('https://nicolasj.promo-17.codeur.online/back_office_portfolio/public/api/competences')
       .then(response => {
         console.log(response)
         this.comps = response.data['hydra:member']

@@ -5,24 +5,20 @@
     <h2>Développeur web junior</h2>
   </div>
   <div class="rub">
-    <div class="lien1">
-      <figure>
-        <router-link class="desc" to="/About"><img class="logo" src="static/media/male.png" alt="présentation"><figcaption>Présentation</figcaption></router-link>
-      </figure>
-      <figure>
-          <router-link class="desc" to="/Realisations"><img class="logo" src="static/media/realisations.png" alt="réalisations"><figcaption>Réalisations</figcaption></router-link>
-      </figure>
-    </div>
-    <div class="lien2">
-      <figure>
-         <router-link class="desc" to="/Competences"><img class="logo" src="static/media/competences.png" alt="compétences"><figcaption>Compétences</figcaption></router-link>
-      </figure>
-      <figure>
-        <router-link class="desc" to="/Contact"><img class="logo" src="static/media/contact.png" alt="contact"><figcaption>Contact</figcaption></router-link>
-      </figure>
-    </div>
+    <figure>
+      <router-link class="desc" to="/About"><img class="logo" src="static/media/male.png" alt="présentation"><figcaption>Présentation</figcaption></router-link>
+    </figure>
+    <figure>
+      <router-link class="desc" to="/Competences"><img class="logo" src="static/media/competences.png" alt="compétences"><figcaption>Compétences</figcaption></router-link>
+    </figure>
+    <figure>
+      <router-link class="desc" to="/Realisations"><img class="logo" src="static/media/realisations.png" alt="réalisations"><figcaption>Réalisations</figcaption></router-link>
+    </figure>
+    <figure>
+      <router-link class="desc" to="/Contact"><img class="logo" src="static/media/contact.png" alt="contact"><figcaption>Contact</figcaption></router-link>
+    </figure>
   </div>
-    <router-view></router-view>
+  <router-view></router-view>
 </div>
 </template>
 
@@ -64,17 +60,16 @@ h1, h2 {
 .rub{
   background-color: #ddf2ff;
   height: 100%;
-  display: flex;
-  justify-content: center;
+  display: block;
   text-align: center;
+  margin-top: 40%;
 }
 .logo{
-  height: 100px;
-  width: 100px;
+  height: 60%;
+  width: 60%;
 }
 figure{
   display: inline-block;
-  justify-content: space-between;
   position: relative;
   top: 50%;
   -webkit-transform: translateY(-50%);
@@ -83,6 +78,11 @@ figure{
   -o-transform: translateY(-50%);
   transform: translateY(-50%);
   margin: 0;
+  padding: 0;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  width: 40%;
+  height: 40%;
 
 }
 .desc{

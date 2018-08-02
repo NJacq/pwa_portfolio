@@ -21,11 +21,11 @@
     <a v-bind:href="`${realis.adresse}`" target="_blank"><button class="btn">Voir le projet</button></a>
 
     <div class="nav">
-      <router-link class="desc" to="/"><img class="logo" src="static/media/home.png" alt="accueil"></router-link>
-      <router-link class="desc" to="/About"><img class="logo" src="static/media/male.png" alt="présentation"></router-link>
-      <router-link class="desc" to="/Competences"><img class="logo" src="static/media/competences.png" alt="compétences"></router-link>
-      <router-link class="desc" to="/Realisations"><img class="logo" src="static/media/realisations_select.png" alt="réalisations"></router-link>
-      <router-link class="desc" to="/Contact"><img class="logo" src="static/media/contact.png" alt="contact"></router-link>
+      <router-link class="desc" to="/"><img class="logo" src="https://nicolasj.promo-17.codeur.online/portfolio_nicolas/static/media/home.png" alt="accueil"></router-link>
+      <router-link class="desc" to="/About"><img class="logo" src="https://nicolasj.promo-17.codeur.online/portfolio_nicolas/static/media/male.png" alt="présentation"></router-link>
+      <router-link class="desc" to="/Competences"><img class="logo" src="https://nicolasj.promo-17.codeur.online/portfolio_nicolas/static/media/competences.png" alt="compétences"></router-link>
+      <router-link class="desc" to="/Realisations"><img class="logo" src="https://nicolasj.promo-17.codeur.online/portfolio_nicolas/static/media/realisations_select.png" alt="réalisations"></router-link>
+      <router-link class="desc" to="/Contact"><img class="logo" src="https://nicolasj.promo-17.codeur.online/portfolio_nicolas/static/media/contact.png" alt="contact"></router-link>
     </div>
   </div>
 </template>
@@ -47,27 +47,28 @@ export default {
   },
   created () {
     this.id = this.$route.params[0]
-    axios.get('http://localhost:8000/api/projets/' + this.id)
+    axios.get('https://nicolasj.promo-17.codeur.online/back_office_portfolio/public/api/projets/' + this.id)
       .then(response => {
         var competences = response.data.competences
         var images = response.data.Images
         // console.log(images)
         // console.log(response.data)
+        var dataAdresse = []
+        var dataUrl = []
         this.real.nom = response.data.nom
         this.reali.description = response.data.description
         this.realis.adresse = response.data.adresse
         this.realisa.github = response.data.github
-        var dataAdresse = []
-        var dataUrl = []
         for (let image of images) {
-          axios.get('http://localhost:8000' + image)
+          console.log(image)
+          axios.get('https://nicolasj.promo-17.codeur.online' + image)
             .then(response => {
               console.log(response.data)
               dataUrl.push(response.data)
             })
         }
         for (let competence of competences) {
-          axios.get('http://localhost:8000' + competence)
+          axios.get('https://nicolasj.promo-17.codeur.online' + competence)
             .then(response => {
               console.log(response.data)
               dataAdresse.push(response.data)

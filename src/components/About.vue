@@ -4,6 +4,7 @@
       <h3>Présentation</h3>
       <li v-bind:key="pre.description" v-for="pre in pres">
         <p>{{pre.description}}</p>
+        <a v-bind:href="pre.cvUrl" target="_blank" value="C.V_Nicolas_Jacquot.pdf"><button type="submit" name="telecharger" class="btn">Voir mon CV</button></a>
          <a v-bind:href="pre.cvUrl" target="_blank" download="C.V_Nicolas_Jacquot.pdf"><button type="submit" name="telecharger" class="btn">Télécharger mon CV</button></a>
       </li>
     </div>
@@ -29,7 +30,7 @@ export default {
     }
   },
   created () {
-    axios.get('http://localhost:8000/api/informations')
+    axios.get('https://nicolasj.promo-17.codeur.online/back_office_portfolio/public/api/informations')
       .then(response => {
         console.log(response)
         this.pres = response.data['hydra:member']
@@ -71,10 +72,11 @@ a{
   text-decoration: none;
   color: #003150;
 }
-
 .presentation{
   margin-bottom: 25%;
 }
-
+li{
+  list-style-type: none;
+}
 }
 </style>

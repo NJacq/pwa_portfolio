@@ -79,27 +79,23 @@ export default {
       e.preventDefault()
       this.$v.$touch()
       if (this.$v.$invalid) {
-        this.submitStatus = 'ERROR'
+        this.submitStatus = '<p class="echec">L\'envoi de votre message a échoué!</p>'
+        document.getElementById('response-envoi').innerHTML = this.submitStatus
       } else {
-        var formData = new FormData()
-        const url = 'https://nicolasj.promo-17.codeur.online/portfolio_nicolas/static/model/envoi.php'
-        formData.append('lastName', this.lastName)
-        formData.append('firstName', this.firstName)
-        formData.append('email', this.email)
-        formData.append('message', this.message)
-        axios.post(url, formData)
-          .then(function (response) {
-            return response.text()
-          })
-          .then(function (response) {
-            console.log(response)
-          })
-        this.$v.$touch()
-        if (this.$v.$invalid) {
-          this.submitStatus = '<p class="echec">L\'envoi de votre message a échoué!</p>'
-          document.getElementById('response-envoi').innerHTML = this.submitStatus
-        } else {
-          // do your submit logic here
+        if (navigator.onLine) {
+          var formData = new FormData()
+          const url = 'https://nicolasj.promo-17.codeur.online/portfolio_nicolas/static/model/envoi.php'
+          formData.append('lastName', this.lastName)
+          formData.append('firstName', this.firstName)
+          formData.append('email', this.email)
+          formData.append('message', this.message)
+          axios.post(url, formData)
+            .then(function (response) {
+              return response.text()
+            })
+            .then(function (response) {
+              console.log(response)
+            })
           this.submitStatus = 'Envoi en cours'
           document.getElementById('response-envoi').innerHTML = this.submitStatus
           setTimeout(() => {
@@ -107,13 +103,17 @@ export default {
             document.getElementById('response-envoi').innerHTML = ''
             document.getElementById('response-envoi').innerHTML = this.submitStatus
           }, 500)
+          // do your submit logic here
+        } else {
+          this.submitStatus = '<p class="echec">Vous êtes hors ligne! L\'envoi de votre message a échoué!</p>'
+          document.getElementById('response-envoi').innerHTML = this.submitStatus
         }
+        // do your submit logic here
+        this.submitStatus = 'PENDING'
+        setTimeout(() => {
+          this.submitStatus = 'OK'
+        }, 500)
       }
-      // do your submit logic here
-      this.submitStatus = 'PENDING'
-      setTimeout(() => {
-        this.submitStatus = 'OK'
-      }, 500)
     }
   },
   validations: {

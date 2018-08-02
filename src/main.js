@@ -10,7 +10,9 @@ import Contact from './components/Contact'
 import Competences from './components/Competences'
 import Realisations from './components/Realisations'
 import Realisation from './components/Realisation'
+import Vue2Filters from 'vue2-filters'
 
+Vue.use(Vue2Filters)
 Vue.use(VueRouter)
 Vue.use(Vuelidate)
 

@@ -4,7 +4,7 @@
       <h4>Ce que je sais faire</h4>
       <div class="liste">
         <ul>
-            <li v-bind:key="comp.adresse" v-for="comp in comps">
+            <li v-bind:key="comp.adresse" v-for="comp in orderBy(comps, 'nom')">
                 <img class="logoComp" v-bind:src="comp.adresse">
             </li>
         </ul>
@@ -76,8 +76,10 @@ h4{
   margin-left: 10%;
 }
 .logoComp{
-  width: 30%;
-  height: 30%;
+  width: 22%;
+  height: 22%;
+  margin-left: 2%;
+  margin-right: 2%;
 }
 ul{
   padding: 0;

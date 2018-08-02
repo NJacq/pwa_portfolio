@@ -7,7 +7,7 @@
     <div>
     </div>
     <ul>
-      <li v-bind:key="img.url" v-for="img in imgs.url">
+      <li v-bind:key="img.url" v-for="img in orderBy(imgs.url, 'nom')">
         <img class="imgProjet" v-bind:src="img.url">
       </li>
     </ul>
@@ -120,11 +120,12 @@ h4{
 h5{
   color: #003150;
   font-family: "blue";
-  font-size: 20px;
+  font-size: 22px;
   margin-left: 6%;
 }
 .descrip{
   color: black;
+  font-size: 19px;
 }
 a{
   text-decoration: none;
@@ -146,9 +147,9 @@ li{
   margin: 1%;
 }
 .imgComp{
-  width: 30%;
-  height: 30%;
-  margin: 1%;
+  width: 22%;
+  height: 22%;
+  margin: 2%;
 }
 .realisation{
   margin-bottom: 25%;

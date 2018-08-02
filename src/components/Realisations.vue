@@ -3,7 +3,7 @@
     <h3>Réalisations</h3>
     <div class="container">
       <div class="liste">
-        <li v-bind:key="real.image" v-for="real in reals">
+        <li v-bind:key="real.image" v-for="real in orderBy(reals,'nom')">
           <figure>
             <router-link class="desc" v-bind:to="`/Realisation/${real.id}`"><img class="logoReal" v-bind:src="real.image">
             <figcaption class="titre">{{real.nom}}</figcaption></router-link>
